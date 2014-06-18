@@ -9,6 +9,7 @@ if ( ! function_exists( 'deity_setup_theme' ) ){
 		$template_dir = get_template_directory();
 
 		require_once($template_dir . '/athena/custom_functions.php');
+		require_once($template_dir . '/athena/core_functions.php');
 	}
 }
 ?>

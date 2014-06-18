@@ -28,21 +28,20 @@
 			<?php if (get_option('linkedin-logo')) echo ('<a href="#linkedin"><img src='.get_option('linkedin-logo').'></a>');?>
 			<?php if (get_option('twitter-logo')) echo ('<a href="#twitter"><img src='.get_option('twitter-logo').'></a>');?>
 		</div>
-		<nav id="nav">	
-			<ul>		
-				<li> 
-					<a href="#"><span> Home </span></a> 
-				</li>
-				<li> 
-					<a href="#"><span> About </span></a> 
-				</li>
-				<li> 
-					<a href="#"><span> Contact </span></a> 
-				</li>
-				<li> 
-					<a href="#"><span> Services </span></a> 
-				</li>
-			</ul>
+		<nav id="navigation">	
+			<?php $menuClass = 'superfish nav';
+			$primaryNav = '';
+			
+			if (function_exists('wp_nav_menu')) 
+				$primaryNav = wp_nav_menu( array( 'theme_location' => 'primary-menu', 'container' => '', 'fallback_cb' => '', 'menu_class' => $menuClass, 'echo' => false ) );
+			if ($primaryNav == '') { ?>
+					<ul class="<?php echo esc_attr( $menuClass ); ?>">
+
+						<?php show_page_menu($menuClass,false,true); ?>
+						
+					</ul> <!-- end ul.nav -->
+				<?php }
+				else echo($primaryNav); ?>
 		</nav>	
 			<div id="search-form">
 			</div> <!-- end searchform -->
