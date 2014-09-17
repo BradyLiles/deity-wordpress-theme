@@ -9,7 +9,13 @@ if ( ! function_exists( 'deity_setup_theme' ) ){
 		$template_dir = get_template_directory();
 
 		require_once($template_dir . '/athena/custom_functions.php');
-		require_once($template_dir . '/athena/core_functions.php');
 	}
 }
+
+function register_my_menu() {
+  register_nav_menu('header-menu',__( 'Navigation Menu' ));
+}
+add_action( 'init', 'register_my_menu' );
+
 ?>
+<?php require_once(TEMPLATEPATH . '/athena/admin-menu.php'); ?>

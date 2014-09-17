@@ -49,21 +49,18 @@ body {
 
 #logo {
 	height: 100px;
-	float: left;
-	position: absolute;
 	margin: 15px 0 0 20px;
 }
 
 #logo img {
+	display: block;
     float: left;
-
+	padding-right: 20px;
 }
 
 #logo h1 {
-    float: right;
     font-size: 3em;
     font-weight: 600;
-    padding: 0 0 0 20px;
     font-family: sans-serif;
 }
 
@@ -71,6 +68,7 @@ body {
     width: 125px;
     height: 40px;
 	position: absolute;
+	top: 0px;
     right: 0px;
     margin: 10px 15px 0 0;
 }
@@ -85,24 +83,21 @@ body {
 }
 
 #navigation {
-    width: 500px;
     margin: 0 0 0 155px;
 	position: relative;
-	
-    top: 96px;
+    top: -15px;
     overflow: hidden;
-    box-shadow: 5px 5px 15px;
     border-radius: 7px;
 }
+
 #navigation ul {
     float: left;
     height: 40px;
-    width: 800px;
     opacity: 0.95;
     border-radius: 5px;
     list-style-type: none;
-    box-shadow: 0 250px 150px rgba(0,0,0,.2);
-    margin: 0;
+    margin: 0 0 12px 0;
+	box-shadow: 5px 5px 15px;
     padding: 0;
 }
 #navigation ul li {
@@ -132,7 +127,7 @@ body {
     -moz-transition: all .2s ease-in;
     -webkit-transition: all .2s ease-in;
 }
-#navigation ul li a { width: 125px ;}
+#navigation ul li a { min-width: 105px; padding: 0 15px 0 15px;}
 #navigation ul li:first-child a {
     -webkit-border-top-left-radius: 5px;
     -webkit-border-bottom-left-radius: 5px;

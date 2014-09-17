@@ -1,0 +1,70 @@
+.deity-Slider {
+    text-align: left;
+    margin: 0 auto;
+    width: 1024px;
+    position: relative;
+    box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 7px;
+    background: #fff;
+}
+
+.deity-Slider { background: rgb(172, 172, 172); }
+
+.deity-Slider img.hidden{
+    opacity: 0.0;
+    z-index: -1;
+    position: absolute;
+}
+
+.deity-Slider  img{
+    opacity: 1.0;
+    transition: opacity 1.0s cubic-bezier(0.1,0.6,1,1);
+    position: relative;
+    display:block;
+    top:0px;
+}
+.deity-directionNav { display:block; }
+
+.deity-directionNav a {
+    top: 45%;
+    display:block;
+    position: absolute;
+    cursor: pointer;
+    width:30px;
+    height:30px;
+    background:url(images/arrows.png) no-repeat;
+    text-indent:-9999px;
+    opacity: 0;
+    transition: all 200ms ease-in-out;
+}
+.deity-directionNav a { opacity: 1; }
+.deity-directionNav a:hover { opacity: 0.9; }
+
+a.deity-nextNav {
+    background-position:-30px 0;
+    right:20px;
+}
+
+a.deity-prevNav {
+    left:20px;
+}
+
+.deity-title {
+    font-size: 2em;
+    text-shadow: 2px 1px 4px #000000;
+    position: absolute;
+    bottom: 0px;
+    max-width: 48%;
+    border-top-right-radius: 5px;
+    padding: 10px 20px 20px 60px;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.deity-description {
+    position: initial;
+    bottom: 20px;
+    left: 0px;
+    font-size: 15px;
+    color: white;
+}

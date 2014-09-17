@@ -24,6 +24,13 @@ if ( ! function_exists( 'deity_titles' ) ){
 	}
 }
 
+function theme_name_scripts() {
+    wp_enqueue_script( 'deity-slider', get_template_directory_uri() . '/athena/js/deity.slider.js', array(), '1.0.0', true );
+}
+
+add_action( 'wp_enqueue_scripts', 'theme_name_scripts' );
+
+
 if ( ! function_exists( 'show_categories_menu' ) ){
 	function show_categories_menu($customClass = 'nav clearfix', $addUlContainer = true){
 		global $shortname, $themename, $category_menu, $exclude_cats, $hide, $strdepth2, $projects_cat;
