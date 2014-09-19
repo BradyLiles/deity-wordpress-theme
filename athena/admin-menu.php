@@ -6,11 +6,6 @@ class My_Theme_Options {
 	private $checkboxes;
 	private $settings;
 
-	/**
-	 * Construct
-	 *
-	 * @since 1.0
-	 */
 	public function __construct() {
 
 		// This will keep track of the checkbox options for the validate_settings function.
@@ -19,6 +14,7 @@ class My_Theme_Options {
 		$this->get_settings();
 
 		$this->sections['general']      = __( 'General Settings' );
+
 		$this->sections['appearance']   = __( 'Appearance' );
 		$this->sections['reset']        = __( 'Reset to Defaults' );
 		$this->sections['about']        = __( 'About' );
@@ -31,11 +27,190 @@ class My_Theme_Options {
 
 	}
 
+    /**
+     * Settings and defaults
+     *
+     * @since 1.0
+     */
+    public function get_settings()
+    {
+
+        /* General Settings
+        ===========================================*/
+
+        $this->settings['example_text'] = array(
+            'title' => __('Example Text Input'),
+            'desc' => __('This is a description for the text input.'),
+            'std' => 'Default value',
+            'type' => 'text',
+            'section' => 'general'
+        );
+
+        $this->settings['example_textarea'] = array(
+            'title' => __('Example Textarea Input'),
+            'desc' => __('This is a description for the textarea input.'),
+            'std' => 'Default value',
+            'type' => 'textarea',
+            'section' => 'general'
+        );
+
+        $this->settings['example_checkbox'] = array(
+            'section' => 'general',
+            'title' => __('Example Checkbox'),
+            'desc' => __('This is a description for the checkbox.'),
+            'type' => 'checkbox',
+            'std' => 1 // Set to 1 to be checked by default, 0 to be unchecked by default.
+        );
+
+        $this->settings['example_heading'] = array(
+            'section' => 'general',
+            'title' => '', // Not used for headings.
+            'desc' => 'Example Heading',
+            'type' => 'heading'
+        );
+
+        $this->settings['example_radio'] = array(
+            'section' => 'general',
+            'title' => __('Example Radio'),
+            'desc' => __('This is a description for the radio buttons.'),
+            'type' => 'radio',
+            'std' => '',
+            'choices' => array(
+                'choice1' => 'Choice 1',
+                'choice2' => 'Choice 2',
+                'choice3' => 'Choice 3'
+            )
+        );
+
+        $this->settings['example_select'] = array(
+            'section' => 'general',
+            'title' => __('Example Select'),
+            'desc' => __('This is a description for the drop-down.'),
+            'type' => 'select',
+            'std' => '',
+            'choices' => array(
+                'choice1' => 'Other Choice 1',
+                'choice2' => 'Other Choice 2',
+                'choice3' => 'Other Choice 3'
+            )
+        );
+
+        /* Appearance
+        ===========================================*/
+
+        $this->settings['header_logo'] = array(
+            'section' => 'appearance',
+            'title' => __('Header Logo'),
+            'desc' => __('Enter the URL to your logo for the theme header.'),
+            'type' => 'url',
+            'std' => '',
+            'value' => 'Logo'
+        );
+
+        $this->settings['favicon'] = array(
+            'section' => 'appearance',
+            'title' => __('Favicon'),
+            'desc' => __('Enter the URL to your favicon. (Should be 16x16 pixels.)'),
+            'type' => 'url',
+            'std' => '',
+            'value' => 'Favicon'
+        );
+
+        $this->settings['facebook_logo'] = array(
+            'section' => 'appearance',
+            'title' => __('Display Facebook Icon'),
+            'desc' => __(''),
+            'type' => 'checkbox',
+            'std' => 1, // Set to 1 to be checked by default, 0 to be unchecked by default.
+            'class' => 'hideNextRow'
+        );
+
+        $this->settings['facebook_url'] = array(
+            'section' => 'appearance',
+            'title' => __('Facebook URL'),
+            'desc' => __('Enter the URL to your Facebook profile/page.'),
+            'type' => 'text',
+            'std' => '#',
+            'class' => 'hide'
+        );
+
+        $this->settings['linkedin_logo'] = array(
+            'section' => 'appearance',
+            'title' => __('Display LinkedIn Icon'),
+            'desc' => __(''),
+            'type' => 'checkbox',
+            'std' => 1, // Set to 1 to be checked by default, 0 to be unchecked by default.
+            'class' => 'hideNextRow'
+        );
+
+        $this->settings['linkedin_url'] = array(
+            'section' => 'appearance',
+            'title' => __('LinkedIn URL'),
+            'desc' => __('Enter the URL to your LinkedIn profile/page.'),
+            'type' => 'text',
+            'std' => '#',
+            'class' => 'hide'
+        );
+
+        $this->settings['twitter_logo'] = array(
+            'section' => 'appearance',
+            'title' => __('Display Twitter Icon'),
+            'desc' => __(''),
+            'type' => 'checkbox',
+            'std' => 1, // Set to 1 to be checked by default, 0 to be unchecked by default.
+            'class' => 'hideNextRow'
+        );
+
+        $this->settings['twitter_url'] = array(
+            'section' => 'appearance',
+            'title' => __('Twitter URL'),
+            'desc' => __('Enter the URL to your Twitter profile/page.'),
+            'type' => 'text',
+            'std' => '#',
+            'class' => 'hide'
+        );
+
+        $this->settings['custom_css'] = array(
+            'title' => __('Custom Styles'),
+            'desc' => __('Enter any     custom CSS here to apply it to your theme.'),
+            'std' => '',
+            'type' => 'textarea',
+            'section' => 'appearance',
+            'class' => 'code'
+        );
+
+        /* Reset
+        ===========================================*/
+
+        $this->settings['reset_theme'] = array(
+            'section' => 'reset',
+            'title' => __('Reset theme'),
+            'type' => 'checkbox',
+            'std' => 0,
+            'class' => 'warning', // Custom class for CSS
+            'desc' => __('Check this box and click "Save Changes" below to reset theme options to their defaults.')
+        );
+
+    }
+
 	/**
-	 * Add options page
+     * Initialize settings to their default values
 	 *
 	 * @since 1.0
 	 */
+    public function initialize_settings()
+    {
+
+        $default_settings = array();
+        foreach ($this->settings as $id => $setting) {
+            if ($setting['type'] != 'heading')
+                $default_settings[$id] = $setting['std'];
+        }
+
+        update_option('mytheme_options', $default_settings);
+
+    }
+
 	public function add_pages() {
 
 		$admin_page = add_theme_page( __( 'Theme Options' ), __( 'Theme Options' ), 'manage_options', 'mytheme-options', array( &$this, 'display_page' ) );
@@ -45,82 +220,44 @@ class My_Theme_Options {
 
 	}
 
-	/**
-	 * Create settings field
-	 *
-	 * @since 1.0
-	 */
-	public function create_setting( $args = array() ) {
-
-		$defaults = array(
-			'id'      => 'default_field',
-			'title'   => __( 'Default Field' ),
-			'desc'    => __( 'This is a default description.' ),
-			'std'     => '',
-			'type'    => 'text',
-			'section' => 'general',
-			'choices' => array(),
-			'class'   => '',
-            'value'   => ''
-		);
-
-		extract( wp_parse_args( $args, $defaults ) );
-
-		$field_args = array(
-            'id'        => $id,
-            'desc'      => $desc,
-            'std'       => $std,
-            'type'      => $type,
-			'choices'   => $choices,
-			'label_for' => $id,
-			'class'     => $class,
-            'value'     => $value
-		);
-
-		if ( $type == 'checkbox' )
-			$this->checkboxes[] = $id;
-
-		add_settings_field( $id, $title, array( $this, 'display_setting' ), 'mytheme-options', $section, $field_args );
-	}
-
-	/**
-	 * Display options page
-	 *
-	 * @since 1.0
-	 */
 	public function display_page() {
 
+        //Lightbox
         echo '<div id="lightbox">
-<span class="close-btn"><a href="#">X</a></span>
-
-
-                    <iframe frameborder="0" hspace="0" src="media-upload.php?type=image&amp;" id="deity_lb"></iframe>
+                <span class="close-btn"><a href="#">X</a></span>
+                <iframe frameborder="0" hspace="0" src="media-upload.php?type=image&amp;" id="deity_lb"></iframe>
             </div>';
 
+        //Title
 		echo '<div class="wrap">
-	<div class="icon32" id="icon-options-general"></div>
-	<h2>' . __( 'Theme Options' ) . '</h2>';
+	            <div class="icon32" id="icon-options-general"></div>
+	            <h2>' . __('Theme Options') . '</h2>';
 
+        //Update Boolean
 		if ( isset( $_GET['settings-updated'] ) && $_GET['settings-updated'] == true )
 			echo '<div class="updated fade"><p>' . __( 'Theme options updated.' ) . '</p></div>';
 
+        //Start Form
 		echo '<form action="options.php" method="post">';
+        settings_fields('mytheme_options');
 
-		settings_fields( 'mytheme_options' );
+        //Create option container
 		echo '<div class="ui-tabs">
-			<ul class="ui-tabs-nav">';
+			    <ul class="ui-tabs-nav">';
 
+        //Display Menu Header List Items
 		foreach ( $this->sections as $section_slug => $section )
 			echo '<li><a href="#' . $section_slug . '">' . $section . '</a></li>';
+        echo '</ul>';
 
-		echo '</ul>';
 		do_settings_sections( $_GET['page'] );
 
+        //End Option Container, Submit Changes, and end form.
 		echo '</div>
-		<p class="submit"><input name="Submit" type="submit" class="button-primary" value="' . __( 'Save Changes' ) . '" /></p>
-		
-	</form>';
+		        <p class="submit"><input name="Submit" type="submit" class="button-primary" value="' . __('Save Changes') . '" /></p>
+		        </form>';
 
+        //JS Scripts
 		echo '<script type="text/javascript">
 		jQuery(document).ready(function($) {
 			var sections = [];';
@@ -140,12 +277,12 @@ class My_Theme_Options {
 			$(".ui-tabs").tabs({
 				fx: { opacity: "toggle", duration: "fast" }
 			});
-			
+
 			$("input[type=text], textarea").each(function() {
 				if ($(this).val() == $(this).attr("placeholder") || $(this).val() == "")
 					$(this).css("color", "#999");
 			});
-			
+
 			$("input[type=text], textarea").focus(function() {
 				if ($(this).val() == $(this).attr("placeholder") || $(this).val() == "") {
 					$(this).val("");
@@ -157,9 +294,9 @@ class My_Theme_Options {
 					$(this).css("color", "#999");
 				}
 			});
-			
+
 			$(".wrap h3, .wrap table").show();
-			
+
 			// This will make the "warning" checkbox class really stand out when checked.
 			// I use it here for the Reset checkbox.
 			$(".warning").change(function() {
@@ -187,9 +324,9 @@ class My_Theme_Options {
 			            jQuery(this).parents("tr").css("display", "none");
 			} ) } );
 
-			
+
 			// Browser compatibility
-			if ($.browser.mozilla) 
+			if ($.browser.mozilla)
 			         $("form").attr("autocomplete", "off");
 		});
 	</script>
@@ -197,20 +334,10 @@ class My_Theme_Options {
 
 	}
 
-	/**
-	 * Description for section
-	 *
-	 * @since 1.0
-	 */
 	public function display_section() {
 		// code
 	}
 
-	/**
-	 * Description for About section
-	 *
-	 * @since 1.0
-	 */
 	public function display_about_section() {
 
 		// This displays on the "About" tab. Echo regular HTML here, like so:
@@ -218,11 +345,6 @@ class My_Theme_Options {
 
 	}
 
-	/**
-	 * HTML output for text field
-	 *
-	 * @since 1.0
-	 */
 	public function display_setting( $args = array() ) {
 
 		extract( $args );
@@ -316,188 +438,6 @@ class My_Theme_Options {
 	}
 
 	/**
-	 * Settings and defaults
-	 *
-	 * @since 1.0
-	 */
-	public function get_settings() {
-
-		/* General Settings
-		===========================================*/
-
-		$this->settings['example_text'] = array(
-			'title'   => __( 'Example Text Input' ),
-			'desc'    => __( 'This is a description for the text input.' ),
-			'std'     => 'Default value',
-			'type'    => 'text',
-			'section' => 'general'
-		);
-
-		$this->settings['example_textarea'] = array(
-			'title'   => __( 'Example Textarea Input' ),
-			'desc'    => __( 'This is a description for the textarea input.' ),
-			'std'     => 'Default value',
-			'type'    => 'textarea',
-			'section' => 'general'
-		);
-
-		$this->settings['example_checkbox'] = array(
-			'section' => 'general',
-			'title'   => __( 'Example Checkbox' ),
-			'desc'    => __( 'This is a description for the checkbox.' ),
-			'type'    => 'checkbox',
-			'std'     => 1 // Set to 1 to be checked by default, 0 to be unchecked by default.
-		);
-
-		$this->settings['example_heading'] = array(
-			'section' => 'general',
-			'title'   => '', // Not used for headings.
-			'desc'    => 'Example Heading',
-			'type'    => 'heading'
-		);
-
-		$this->settings['example_radio'] = array(
-			'section' => 'general',
-			'title'   => __( 'Example Radio' ),
-			'desc'    => __( 'This is a description for the radio buttons.' ),
-			'type'    => 'radio',
-			'std'     => '',
-			'choices' => array(
-				'choice1' => 'Choice 1',
-				'choice2' => 'Choice 2',
-				'choice3' => 'Choice 3'
-			)
-		);
-
-		$this->settings['example_select'] = array(
-			'section' => 'general',
-			'title'   => __( 'Example Select' ),
-			'desc'    => __( 'This is a description for the drop-down.' ),
-			'type'    => 'select',
-			'std'     => '',
-			'choices' => array(
-				'choice1' => 'Other Choice 1',
-				'choice2' => 'Other Choice 2',
-				'choice3' => 'Other Choice 3'
-			)
-		);
-
-		/* Appearance
-		===========================================*/
-
-		$this->settings['header_logo'] = array(
-			'section' => 'appearance',
-			'title'   => __( 'Header Logo' ),
-			'desc'    => __( 'Enter the URL to your logo for the theme header.' ),
-			'type'    => 'url',
-			'std'     => '',
-            'value' => 'Logo'
-		);
-
-        $this->settings['favicon'] = array(
-            'section' => 'appearance',
-            'title'   => __( 'Favicon' ),
-            'desc'    => __( 'Enter the URL to your favicon. (Should be 16x16 pixels.)' ),
-            'type'    => 'url',
-            'std'     => '',
-            'value' => 'Favicon'
-        );
-
-        $this->settings['facebook_logo'] = array(
-            'section' => 'appearance',
-            'title'   => __( 'Display Facebook Icon' ),
-            'desc'    => __( '' ),
-            'type'    => 'checkbox',
-            'std'     => 1, // Set to 1 to be checked by default, 0 to be unchecked by default.
-            'class'   => 'hideNextRow'
-        );
-
-        $this->settings['facebook_url'] = array(
-            'section' => 'appearance',
-            'title'   => __( 'Facebook URL' ),
-            'desc'    => __( 'Enter the URL to your Facebook profile/page.' ),
-            'type'    => 'text',
-            'std'     => '#',
-            'class'   => 'hide'
-        );
-
-        $this->settings['linkedin_logo'] = array(
-            'section' => 'appearance',
-            'title'   => __( 'Display LinkedIn Icon' ),
-            'desc'    => __( '' ),
-            'type'    => 'checkbox',
-            'std'     => 1, // Set to 1 to be checked by default, 0 to be unchecked by default.
-            'class'   => 'hideNextRow'
-        );
-
-        $this->settings['linkedin_url'] = array(
-            'section' => 'appearance',
-            'title'   => __( 'LinkedIn URL' ),
-            'desc'    => __( 'Enter the URL to your LinkedIn profile/page.' ),
-            'type'    => 'text',
-            'std'     => '#',
-            'class'   => 'hide'
-        );
-
-        $this->settings['twitter_logo'] = array(
-            'section' => 'appearance',
-            'title'   => __( 'Display Twitter Icon' ),
-            'desc'    => __( '' ),
-            'type'    => 'checkbox',
-            'std'     => 1, // Set to 1 to be checked by default, 0 to be unchecked by default.
-            'class'   => 'hideNextRow'
-        );
-
-        $this->settings['twitter_url'] = array(
-            'section' => 'appearance',
-            'title'   => __( 'Twitter URL' ),
-            'desc'    => __( 'Enter the URL to your Twitter profile/page.' ),
-            'type'    => 'text',
-            'std'     => '#',
-            'class'   => 'hide'
-        );
-
-		$this->settings['custom_css'] = array(
-			'title'   => __( 'Custom Styles' ),
-			'desc'    => __( 'Enter any     custom CSS here to apply it to your theme.' ),
-			'std'     => '',
-			'type'    => 'textarea',
-			'section' => 'appearance',
-			'class'   => 'code'
-		);
-
-		/* Reset
-		===========================================*/
-
-		$this->settings['reset_theme'] = array(
-			'section' => 'reset',
-			'title'   => __( 'Reset theme' ),
-			'type'    => 'checkbox',
-			'std'     => 0,
-			'class'   => 'warning', // Custom class for CSS
-			'desc'    => __( 'Check this box and click "Save Changes" below to reset theme options to their defaults.' )
-		);
-
-	}
-
-	/**
-	 * Initialize settings to their default values
-	 *
-	 * @since 1.0
-	 */
-	public function initialize_settings() {
-
-		$default_settings = array();
-		foreach ( $this->settings as $id => $setting ) {
-			if ( $setting['type'] != 'heading' )
-				$default_settings[$id] = $setting['std'];
-		}
-
-		update_option( 'mytheme_options', $default_settings );
-
-	}
-
-	/**
 	 * Register settings
 	 *
 	 * @since 1.0
@@ -520,24 +460,48 @@ class My_Theme_Options {
 			$this->create_setting( $setting );
 		}
 
+    }
+
+    public function create_setting($args = array())
+    {
+
+        $defaults = array(
+            'id' => 'default_field',
+            'title' => __('Default Field'),
+            'desc' => __('This is a default description.'),
+            'std' => '',
+            'type' => 'text',
+            'section' => 'general',
+            'choices' => array(),
+            'class' => '',
+            'value' => ''
+        );
+
+        extract(wp_parse_args($args, $defaults));
+
+        $field_args = array(
+            'id' => $id,
+            'desc' => $desc,
+            'std' => $std,
+            'type' => $type,
+            'choices' => $choices,
+            'label_for' => $id,
+            'class' => $class,
+            'value' => $value
+        );
+
+        if ($type == 'checkbox')
+            $this->checkboxes[] = $id;
+
+        add_settings_field($id, $title, array($this, 'display_setting'), 'mytheme-options', $section, $field_args);
 	}
 
-	/**
-	 * jQuery Tabs
-	 *
-	 * @since 1.0
-	 */
 	public function scripts() {
 
 		wp_print_scripts( 'jquery-ui-tabs' );
 
 	}
 
-	/**
-	 * Styling for the theme options page
-	 *
-	 * @since 1.0
-	 */
 	public function styles() {
 
 		wp_register_style( 'mytheme-admin', get_bloginfo( 'stylesheet_directory' ) . '/mytheme-options.css' );
@@ -545,11 +509,6 @@ class My_Theme_Options {
 
 	}
 
-	/**
-	 * Validate settings
-	 *
-	 * @since 1.0
-	 */
 	public function validate_settings( $input ) {
 
 		if ( ! isset( $input['reset_theme'] ) ) {
@@ -568,7 +527,7 @@ class My_Theme_Options {
 
 }
 
-$theme_options = new My_Theme_Options();
+$theme_options = new my_theme_options();
 
 function mytheme_option( $option ) {
 	$options = get_option( 'mytheme_options' );
