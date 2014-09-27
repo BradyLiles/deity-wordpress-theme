@@ -13,9 +13,6 @@
 <?php wp_head(); ?>
 
 </head>
-<?php
-//TEST
-?>
 <body<?php if (is_front_page()) echo(' id="home"'); ?> <?php body_class(); ?> >
 <div id="container">
 	<div id="header">
@@ -36,6 +33,7 @@
 		</div>
 		<nav id="navigation">	
 			<?php $menuClass = 'superfish nav';
+            //My Comment
 			$primaryNav = '';
 			if (function_exists('wp_nav_menu'))
 				$primaryNav = wp_nav_menu( array( 'theme_location' => 'header-menu', 'container' => '', 'fallback_cb' => '', 'menu_class' => $menuClass, 'echo' => false ) );
